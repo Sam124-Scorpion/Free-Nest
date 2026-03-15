@@ -20,6 +20,9 @@ coverage/
 *.tsbuildinfo
 
 # Local environment files (keep optional template tracked)
+.env
+.env.*
+!.env.example
 
 # Machine-specific local config
 *.local
