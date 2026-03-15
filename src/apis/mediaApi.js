@@ -1,0 +1,48 @@
+import axios from "axios";
+
+const UNSPLASH_KEY = import.meta.env.VITE_UNSPLASH_API_KEY
+const PEXEL_KEY = import.meta.env.VITE_PEXELS_API_KEY
+const GIFFY_KEY = import.meta.env.VITE_GIFFY_API_KEY
+
+
+
+export async function fetchphotos(query , page=1 , per_page=20){
+    const res = await axios.get("https://api.unsplash.com/search/photos",{
+        params : {query , page , per_page} , 
+        headers: {Authorization:`Client-ID ${UNSPLASH_KEY}`}
+
+    })
+    return res.data
+}
+
+export async function fetchvideos(query , per_page = 20){
+    const res = await axios.get("https://api.pexels.com/v1/videos/search" , {
+        params :{query , per_page} ,
+        headers:{
+                Authorization: PEXEL_KEY
+        }
+
+    })
+    return res.data
+}
+
+export async function fetchgiffs(query , limit = 20){
+    const res = await axios.get("https://api.giphy.com/v1/gifs/search" , {
+        params : {
+                q:query , limit , api_key:GIFFY_KEY
+        }
+    })
+    return res.data
+}
+
+
+
+
+
+
+
+
+
+
+
+
